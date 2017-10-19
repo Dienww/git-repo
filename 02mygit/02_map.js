@@ -1,17 +1,17 @@
 var array = [1,2,3,4,5];
 //实现
 //添加原型
-Array.prototype.myForeach = function (callback,thisArg) {
+Array.prototype.myMap = function (callback) {
     if (typeof callback !== 'function'){
         throw new TypeError(callback + 'is not a function');
     }
-    for (var i=0;i<this.length;i++){
-        //判断数组元素是否有意义 比如arr[1]被删除，则arr[1]不打印
-        if (Object.prototype.hasOwnProperty.call(this,i)){
-            callback(this[i]*2,i,this);
-        }
+    var res = [];
+    for(var i=0;i<this.length;i++){
+        res.push(this[i],i,this);
     }
+    console.log(res)
+    callback(res);
 };
-array.myForeach (function (value,index) {
-    console.log(value,index);
-});
+// array.myMap (function (value) {
+//     console.log(value*2);
+// });
